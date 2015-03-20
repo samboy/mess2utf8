@@ -15,3 +15,15 @@ not look like valid UTF-8 are converted from CP-1252 in to UTF-8.
 The file mess2utf8.php can be included in other PHP scripts via the
 "require_once()" directive.
 
+## BUGS
+
+UTF-8 technically only allows mappings to valid Unicode points, which
+means a given UTF-8 sequence is four bytes or less.  This code allows
+UTF-8 sequences up to six bytes in length, as was allowed in earlier
+UTF-8 RFCs.
+
+It technically is an error if a UTF-8 sequence is too long to represent
+a given Unicode code point.  This code does not consider sequences like
+that errors.
+
+
