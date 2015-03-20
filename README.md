@@ -4,7 +4,7 @@ Converts a mixture of Windows CP-1252 and UTF-8 in to pure UTF-8
 This defines a function, mess2utf8, which takes a string as input and
 returns a string as output.
 
-Windows CP-1252 9Code page 1252) is a superset of ISO 8859-1 which
+Windows CP-1252 (Code page 1252) is a superset of ISO 8859-1 which
 Microsoft developed in the 1990s; there are still systems which use
 this coding system.
 
