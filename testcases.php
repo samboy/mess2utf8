@@ -12,6 +12,10 @@ function prove($in,$expected) {
 
 # Test #1: Pure simple UTF-8
 prove(mess2utf8("aáéíóúñ"),"aáéíóúñ");
+# Test #2: More complicated UTF-8
+prove(mess2utf8("‘’“a”¡"),"‘’“a”¡");
+# Test #3: Some CP-1252
+prove(mess2utf8("\x95\x99\x93\x94"),"•™“”");
 
 print "All tests PASS\n"
 

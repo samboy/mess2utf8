@@ -4,7 +4,8 @@
 # string.  UTF-8 is generally left untouched; non-UTF-8 is assumed to
 # be Microsoft CP-1252
 
-function mess2utf8($in) {
+	# Input: 8-bit number
+	# Output: Number of leading binary 1s in the input number
 	function count_leading_1s($num) {
 		if($num > 255 || $num < 0) {
 			return -1;
@@ -17,6 +18,70 @@ function mess2utf8($in) {
 		}
 		return $out;
 	}
+
+	# Input: 8-bit number corresponding to a CP-1252 point between
+	# 0x80 and 0x9f (the area not defined in ISO-8859-1
+	# Output: A string with the UTF-8 for that codepoint
+	function cp1252_table($num) {
+		if($num == 0x80) {
+			return "€";
+		} else if($num == 0x82) {
+			return "‚";
+		} else if($num == 0x83) {
+			return "ƒ";
+		} else if($num == 0x84) {
+			return "„";
+		} else if($num == 0x85) {
+			return "…";
+		} else if($num == 0x86) {
+			return "†";
+		} else if($num == 0x87) {
+			return "‡";
+		} else if($num == 0x88) {
+			return "ˆ";
+		} else if($num == 0x89) {
+			return "‰";
+		} else if($num == 0x8a) {
+			return "Š";
+		} else if($num == 0x8b) {
+			return "‹";
+		} else if($num == 0x8c) {
+			return "Œ"; 
+		} else if($num == 0x8e) {
+			return "Ž";
+		} else if($num == 0x91) {
+			return "‘";
+		} else if($num == 0x92) {
+			return "’";
+		} else if($num == 0x93) {
+			return "“";
+		} else if($num == 0x94) {
+			return "”";
+		} else if($num == 0x95) {
+			return "•";
+		} else if($num == 0x96) {
+			return "–";
+		} else if($num == 0x97) {
+			return "—";
+		} else if($num == 0x98) {
+			return "˜";
+		} else if($num == 0x99) {
+			return "™";
+		} else if($num == 0x9a) {
+			return "š";
+		} else if($num == 0x9b) {
+			return "›";
+		} else if($num == 0x9c) {
+			return "œ";
+		} else if($num == 0x9e) {
+			return "ž";
+		} else if($num == 0x9f) {
+			return "Ÿ";
+		}
+	}
+
+	# Input:  CP1252 string.
+	# Output: UTF-8 string.
 	function cp1252_to_utf8($in) {
 		$out = "";
 		$index = 0;
@@ -28,12 +93,13 @@ function mess2utf8($in) {
 			} else if($value <= 0x7f) {
 				$out .= chr($value);
 			} else {
-				$out .= "¿";
+				$out .= cp1252_table($value);
 			}
 		}
 		return $out;
 	}
 
+function mess2utf8($in) {
 	$out = "";
 	$buffer = "";
 	$index = 0;
