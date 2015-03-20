@@ -45,7 +45,7 @@
 	}
 
 	# Input: 8-bit number corresponding to a CP-1252 point between
-	# 0x80 and 0x9f (the area not defined in ISO-8859-1
+	# 0x80 and 0x9f (the area not defined in ISO-8859-1)
 	# Output: A string with the UTF-8 for that codepoint
 	function cp1252_table($num) {
 		if($num == 0x80) {
