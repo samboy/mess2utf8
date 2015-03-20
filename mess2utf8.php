@@ -82,7 +82,4 @@ function mess2utf8($in) {
 	return $out;
 	
 }
-
-print mess2utf8("aáéíóúñ") . "\n";
-
 ?>
