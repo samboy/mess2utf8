@@ -15,7 +15,12 @@ not look like valid UTF-8 are converted from CP-1252 in to UTF-8.
 The file mess2utf8.php can be included in other PHP scripts via the
 "require_once()" directive.
 
-## BUGS
+## Example
+
+The included script mess2utf8example.php shows a simple PHP script using
+the mess2utf8 function. 
+
+## Bugs
 
 UTF-8 technically only allows mappings to valid Unicode points, which
 means a given UTF-8 sequence is four bytes or less.  This code allows
