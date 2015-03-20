@@ -139,10 +139,14 @@ function mess2utf8($in) {
 			$state = $s1 - 1;	
 			$buffer = chr($value);
 		} else {
+			$buffer .= chr($value);
 			$out .= cp1252_to_utf8($buffer);
 			$buffer = "";
 		}
 			
+	}
+	if($state != 0) {
+		$out .= cp1252_to_utf8($buffer);
 	}
 
 	return $out;
