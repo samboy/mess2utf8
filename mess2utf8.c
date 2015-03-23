@@ -107,7 +107,7 @@ void cp1252_to_utf8(char *in, int length) {
 	int index;
 	int value;
 	for(index = 0; index < length; index++) {
-		value = *(in + index);
+		value = *(unsigned char *)(in + index);
 		if(value >= 0xa0 && value <= 0xff) {
 			printf("%c%c",(value >> 6) | 0xc0,
 				(value & 0x3f) | 0x80);
@@ -137,11 +137,13 @@ void mess2utf8() {
 			if(state != 0) {
 				cp1252_to_utf8(buffer, length);
 			}
-			putc(s1,stdout);
+			putc(a,stdout);
 			length = 0;
 			state = 0;
 		} else if(s1 == 1) {
 			if(state == 0) {
+				buffer[0] = a;
+				length = 1;
 				cp1252_to_utf8(buffer, length);
 				length = 0;
 			} else {
