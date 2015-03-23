@@ -18,7 +18,11 @@ The file mess2utf8.php can be included in other PHP scripts via the
 ## Example
 
 The included script mess2utf8example.php shows a simple PHP script using
-the mess2utf8 function. 
+the mess2utf8 function.  This is just an example script; its performance
+is slow.  For bulk conversion of files, use the included C program; a
+large file that took over six hours ot convert using the PHP script
+was converted in under three seconds using the C program, with identical
+output.
 
 ## Bugs
 
@@ -31,4 +35,6 @@ It technically is an error if a UTF-8 sequence is too long to represent
 a given Unicode code point.  This code does not consider sequences like
 that errors.
 
-
+The PHP code is slow.  For conversion of files, use the included C
+program (which converts a file on the standard input in to pure UTF-8
+on the standard output).
